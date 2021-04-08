@@ -1,0 +1,294 @@
+:root {
+  --scale: 1;
+  --roomWidth: 1600px;
+  --roomHeight: 1000px;
+  --toolbarSize: 44px;
+  --roomColor: #f0f0f0;
+  --editColor: #7ba5f5;
+  --VTTblue: #1f5ca6;
+}
+
+body {
+  background: #484848;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Roboto', sans-serif;
+}
+
+#toolbar {
+  background: var(--VTTblue);
+  height: var(--toolbarSize);
+  width: 100%;
+  position: fixed;
+
+  top: calc((100vh - var(--roomHeight) * var(--scale)) / 2 + var(--roomHeight) * var(--scale) - var(--toolbarSize) / 2 - 1px);
+  left: 0;
+  width: 100%;
+  height: var(--toolbarSize);
+  z-index: 2;
+}
+
+#roomArea {
+  position: fixed;
+  overflow: hidden;
+  width: calc(var(--roomWidth) * var(--scale));
+  height: calc(var(--roomHeight) * var(--scale));
+
+  top: calc((100vh - var(--roomHeight) * var(--scale)) / 2 - var(--toolbarSize) / 2);
+  left: 0;
+  z-index: 1;
+}
+
+.toolbarButton {
+  position: relative;
+  width: calc(var(--toolbarSize) - 4px);
+  height: calc(var(--toolbarSize) - 4px);
+  margin: 2px 2px 0 2px;
+  padding: 2px;
+  border: 0;
+  border-radius: 4px;
+  background: none;
+  font-size: calc(var(--toolbarSize) - 12px);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-size: 80% 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.toolbarButton:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+.toolbarButton:focus {
+  outline-style: none;
+  box-shadow: none;
+  border-color: transparent;
+}
+.toolbarButton .tooltip {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: -26px;
+  padding: 2px;
+  font-size: 14px;
+  color: white;
+  background:var(--VTTblue);
+  border-radius: 4px;
+  width: 100px;
+  height: 18px;
+}
+
+.toolbarButton:hover .tooltip {
+  display: block;
+}
+
+@media (min-aspect-ratio: 1600/1000) {
+  #toolbar {
+    top: 0;
+    left: calc((100vw - var(--roomWidth) * var(--scale)) / 2 - var(--toolbarSize) / 2 + 1px);
+    width: var(--toolbarSize);
+    height: 100%;
+  }
+
+  .toolbarButton .tooltip {
+    top: unset;
+    left: calc(100% + 4px);
+  }
+
+  #roomArea {
+    top: 0;
+    left: calc((100vw - var(--roomWidth) * var(--scale)) / 2 + var(--toolbarSize) / 2);
+  }
+}
+
+.overlay {
+  color: white;
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  flex-direction: column;
+  padding: 5% 10%;
+  box-sizing: border-box;
+
+}
+
+.overlay h1 {
+  text-align: center;
+}
+
+.overlay a {
+  color: white;
+  font-weight: bold;
+}
+
+.overlay tr:nth-child(even) {
+  background: #00000022;
+}
+
+#debugButtonOverlay pre {
+  overflow: auto;
+}
+
+#room {
+  transform: scale(var(--scale));
+  transform-origin: left top;
+}
+
+#roomArea.hasOverlay #room {
+  filter: blur(5px);
+}
+
+.surface {
+  position: relative;
+  width: var(--roomWidth);
+  height: var(--roomHeight);
+  background: var(--roomColor);
+  touch-action: none;
+  overflow: hidden;
+}
+
+.widget {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: pre-wrap;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  will-change: transform;
+  touch-action: none;
+  user-select: none;
+  -moz-user-select: none;
+}
+.widget.foreign {
+  display: none !important;
+}
+
+#enlarged {
+  opacity: 1;
+  top: 5vh;
+  left: 5vw;
+  transition: opacity 200ms ease;
+  transition-delay: 400ms, 400ms;
+  transform-origin: top left;
+  pointer-events: none;
+}
+#enlarged.right {
+  left: unset;
+  right: 5vw;
+  transform-origin: top right;
+}
+#enlarged.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#statesButton {
+	background-image:url(/i/icons-white/chess-solid-svg.svg);
+}
+
+#playersButton {
+	background-image:url(/i/icons-white/user-friends-solid-svg.svg);
+}
+
+#editButton {
+	background-image:url(/i/icons-white/edit-regular-svg.svg);
+}
+
+#addButton {
+	background-image:url(/i/icons-white/plus-solid-svg.svg);
+}
+
+#fullscreenButton {
+	background-image:url(/i/icons-white/expand-solid-svg.svg);
+}
+
+#aboutButton {
+	background-image:url(/i/icons-white/info-circle-solid-svg.svg);
+}
+
+/*Buttons css*/
+
+.prettyButton {
+  border:5px;
+  color:white;
+  background-color: var(--VTTblue);
+  padding: 5px;
+  padding-left: 25px;
+  border-radius: 5px;
+  background-repeat: no-repeat;
+  margin:1px;
+}
+
+.gameMenu {
+  background-position:  5px center !important;
+  padding-left: 5px !important;
+}
+
+.upload, .uploadAsset {
+  background-image:url(/i/icons-white/upload-solid-svg.svg);
+  background-size: 20px 70%;
+  background-position:  2.5px center;
+}
+
+.download {
+  background-image:url(/i/icons-white/download-solid-svg.svg);
+  background-size: 20px 70%;
+  background-position:  2.5px center;
+}
+
+.link,.share {
+  background-image:url(/i/icons-white/link-solid-svg.svg);
+  background-size: 20px 60%;
+  background-position:  2.5px center;
+}
+
+.edit {
+  background-image:url(/i/icons-white/edit-regular-svg.svg);
+  background-size: 20px 60%;
+  background-position:  2.5px center;
+}
+
+.create {
+  background-image:url(/i/icons-white/plus-solid-svg.svg);
+  background-size: 20px 70%;
+  background-position:  2.5px center;
+}
+
+.library {
+  background-image:url(/i/icons-white/book-solid-svg.svg);
+  background-size: 20px 70%;
+  background-position:  2.5px center;
+}
+
+.save {
+  background-image:url(/i/icons-white/save-regular-svg.svg);
+  background-size: 20px 70%;
+  background-position:  2.5px center;
+}
+
+.update {
+  border:5px;
+  color:white;
+  background-color: var(--VTTblue);
+  padding: 5px;
+  padding-left: 25px;
+  border-radius: 5px;
+  background-repeat: no-repeat;
+  margin:1px;
+  background-image:url(/i/icons-white/sync-alt-solid-svg.svg);
+  background-size: 20px 70%;
+  background-position:  2.5px center;
+}
+
+.remove {
+  background-image:url(/i/icons-white/trash-alt-solid-svg.svg);
+  background-size: 20px 70%;
+  background-position:  2.5px center;
+}

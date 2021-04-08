@@ -1,0 +1,30 @@
+.holder {
+  background: white;
+  box-sizing: border-box;
+  border: calc(1px / var(--scale)) solid #333;
+  border-color: #d8d8d8 #ccc #ccc #d8d8d8;
+  border-radius: 8px;
+}
+
+.holder > .widget, .widget.droppable.droptarget.holder.transparent > .widget {
+  left: -1px;
+  top: -1px;
+}
+
+.holder.transparent {
+  background: none;
+  border: none;
+}
+
+.holder.transparent > .widget {
+  left: 0;
+  top: 0;
+}
+
+.widget.droppable.droptarget {
+  border: calc(1px / var(--scale)) solid #333 !important;
+}
+
+body.edit .widget.droppable.droptarget {
+  border-width: 3px !important;
+}

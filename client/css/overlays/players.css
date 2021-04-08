@@ -1,0 +1,41 @@
+#playerList {
+  overflow: auto;
+}
+
+.myPlayerEntry .playerName {
+  font-weight: bold;
+}
+
+.inactivePlayerEntry {
+  opacity: 0.5;
+}
+
+.teamColor {
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  border-radius: 20px;
+}
+
+.playerName {
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: white;
+  background: none;
+  font-size: 16px;
+}
+
+.cursor {
+  position: absolute;
+  top: calc(-10px * var(--scale));
+  left: calc(-10px * var(--scale));
+  width: calc(20px * var(--scale));
+  height: calc(20px * var(--scale));
+  border-radius: 100%;
+  opacity: 0.2;
+  pointer-events: none;
+}
