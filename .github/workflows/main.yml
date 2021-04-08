@@ -1,0 +1,15 @@
+name: Pull ArnoldSmith86/virtualtabletop
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:
+  auto-pull:
+    name: PullVirtualtabletop
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v2
+    - run: |
+        git pull https://github.com/ArnoldSmith86/virtualtabletop.git
